@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
   // be sure to include its associated Products
   Category.findAll({
     include: {
-      model: Product
+      model: Product,
+      attributes: ['product_name', 'id']
     }
   }).then((data) => {
     res.json(data)
@@ -30,7 +31,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   // create a new category
   Category.create(req.body)
-    .then(console.log('CATEGORY CREATED!'))
+    .then(data => res.status(200).json(data))
 });
 
 router.put('/:id', (req, res) => {
@@ -44,11 +45,11 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
-  Category.destroy(req.body, {
+  Category.destroy({
     where: {
       id: req.params.id
     }
-  })
+  }).then(data => res.status(200).json(data))
 });
 
 module.exports = router;

@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   Tag.create(req.body)
-    .then(console.log('TAG CREATED!'))
+    .then(data => res.json(data))
 });
 
 router.put('/:id', (req, res) => {
@@ -38,11 +38,11 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  Tag.destroy(req.body, {
+  Tag.destroy({
     where: {
       id: req.params.id
     }
-  })
+  }).then(data => res.status(200).json(data)) 
 });
 
 module.exports = router;

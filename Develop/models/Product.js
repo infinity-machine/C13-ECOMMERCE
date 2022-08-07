@@ -32,7 +32,11 @@ Product.init(
       }
     },
     category_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'category',
+        key: 'id'
+      }
     }
   }, {
     sequelize,
@@ -42,9 +46,6 @@ Product.init(
     modelName: 'product',
   }
 );
-
-Product.belongsToMany(Tag, { through: 'ProductTag' });
-Tag.belongsToMany(Product, { through: 'ProductTag' })
 
 module.exports = Product;
 
