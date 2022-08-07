@@ -1,0 +1,6 @@
+{
+	"product_name": "basketball",
+	"price": 200,
+	"stock": 3,
+	"tagIds": [1, 2, 3, 4]
+}
